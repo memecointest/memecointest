@@ -9,22 +9,14 @@
   },
   {
     "Rank": 2,
-    "Account (Owner)": "GvMuXtaYmyDQwJWhUcMv46qWAVuLT5rxh6ViNFUh4VFM",
-    "Token Account": "3aTJ6mzdqsWtNnPg7TuHYLeMECnBcSWokoqSVMj1zBC3",
-    "Quantity": 18750000.0,
-    "%": 1.88,
-    "Value": 56.46
+    "Account (Owner)": "3rQp76Adb3f8t3P8J7kd3X2kBuJCsqk6x2QWYti9Zup1",
+    "Token Account": "83xHgYBeevVSasdULf4y9Qa4LAfRdFhqrSG5rDb3geyD",
+    "Quantity": 48821151.082872,
+    "%": 4.88,
+    "Value": 147.0
   },
   {
     "Rank": 3,
-    "Account (Owner)": "Btn9TA8unfveQKvS5ppggg6UUoe4ku3i8TeukSWbRzWq",
-    "Token Account": "EpaLc1uokTikQ4iqEWmucZ6LstNVb9GSb5M4AfoBdfWx",
-    "Quantity": 18045688.800859,
-    "%": 1.8,
-    "Value": 54.34
-  },
-  {
-    "Rank": 4,
     "Account (Owner)": "BtpREUdDeRwHknzLXzQD54XwKMX23WWmwtToe1L2DAyx",
     "Token Account": "GquMbvyXojdYr51LiqaiL4z5ZxiaJRrAiHQcNrhJNEij",
     "Quantity": 14500000.0,
@@ -32,15 +24,7 @@
     "Value": 43.66
   },
   {
-    "Rank": 5,
-    "Account (Owner)": "BdBnMxrt8armfckTF3pKjtAnjHWPrzsRQG8MYmahoEoQ",
-    "Token Account": "4LmGVTRK3wJcNoLFFx7eDrsyhCbZo57rzYJhsjPc1bt1",
-    "Quantity": 12025462.282013,
-    "%": 1.2,
-    "Value": 36.21
-  },
-  {
-    "Rank": 6,
+    "Rank": 4,
     "Account (Owner)": "Fs3z7532H8AcWePhMoTnyt2bHhCnhszR6uNS86sU9jcN",
     "Token Account": "5esW52grW7jsn1RqSs3tAJdNMob9iWhFAuhvaaxJaDnU",
     "Quantity": 11000000.0,
@@ -48,7 +32,7 @@
     "Value": 33.12
   },
   {
-    "Rank": 7,
+    "Rank": 5,
     "Account (Owner)": "E1zCTWd69qMcen6fPyr6rTfLApeCq7hq7cpM6mmtaAPi",
     "Token Account": "7rHpywwdZzuN1zrooR6PKsojZWexksYFhCVnZc7JGRXi",
     "Quantity": 10114269.428096,
@@ -56,7 +40,7 @@
     "Value": 30.45
   },
   {
-    "Rank": 8,
+    "Rank": 6,
     "Account (Owner)": "CaL69zHCqXjjJgVC66aoRunn9UdDTYXxCVaPWWFD6ejB",
     "Token Account": "9qNN3nxEXytbLNcy1apw35uNx7W9BtfdeZ1Eq65rCSZU",
     "Quantity": 10000000.0,
@@ -64,7 +48,7 @@
     "Value": 30.11
   },
   {
-    "Rank": 9,
+    "Rank": 7,
     "Account (Owner)": "2eTeH8vkAyVRS8c5VK4txhSzXyEKzFLZhK6ohVZ4QWj1",
     "Token Account": "6kCjQAayPzoEDD88dwuEZzLUHREJh2NtWYVvsZqSHxVF",
     "Quantity": 9960000.0,
@@ -72,7 +56,7 @@
     "Value": 29.99
   },
   {
-    "Rank": 10,
+    "Rank": 8,
     "Account (Owner)": "FAYKps4eAzTRG33t7P5xXQe47YR1SmqKswZEch21NkV3",
     "Token Account": "CeA6XyEDvUyVbKbXjwNueq84DMtqWsUmGR9jMmAgvUTx",
     "Quantity": 9742000.0,
@@ -80,7 +64,7 @@
     "Value": 29.33
   },
   {
-    "Rank": 11,
+    "Rank": 9,
     "Account (Owner)": "3Kdh2XPnncKwSJkFaiqFrDe1mv9q2VWEF7eQFZX8oNAy",
     "Token Account": "FM6SATzkgRjYwxCFoqmWHUAEoZagpGB9nASPhxXz7FHB",
     "Quantity": 9284000.0,
@@ -88,7 +72,7 @@
     "Value": 27.95
   },
   {
-    "Rank": 12,
+    "Rank": 10,
     "Account (Owner)": "3ns5WF5gVkT1gtxScFZwUa4ppv9MxmaPUjCJJoPnqB9D",
     "Token Account": "4UXYwrqKrB96ZS1fj7HqPhebTkGiS8NRENmS9LaAYSPc",
     "Quantity": 8873036.04685,
@@ -96,7 +80,7 @@
     "Value": 26.72
   },
   {
-    "Rank": 13,
+    "Rank": 11,
     "Account (Owner)": "Dzf251EzedVfqVQb8fKzkjwAGZPseztYJAiL2wrpv9RK",
     "Token Account": "9tP47yy8oed1zUyZhxTStFKBdKXK5kqRhX4Q4jHUKrb1",
     "Quantity": 8575000.0,
@@ -104,7 +88,7 @@
     "Value": 25.82
   },
   {
-    "Rank": 14,
+    "Rank": 12,
     "Account (Owner)": "H8QKeA4zo37gpo8CJiT8Fj7smjJo7aeQmjTFJnF4qV5w",
     "Token Account": "F1HRXvAU1wYpp698UXGQPFHJQb6ZTS8xckTS7HwcGa9N",
     "Quantity": 8300000.0,
@@ -112,7 +96,7 @@
     "Value": 24.99
   },
   {
-    "Rank": 15,
+    "Rank": 13,
     "Account (Owner)": "4tbracSaGye6t8JRVfeVd9SLZpWhkyjwMdKGBJM3z2Qt",
     "Token Account": "3nRTjToUTdnULiMDTnE8xh3TgjQjiwzFYU18ezJM2VEd",
     "Quantity": 7367516.566758,
@@ -120,7 +104,7 @@
     "Value": 22.18
   },
   {
-    "Rank": 16,
+    "Rank": 14,
     "Account (Owner)": "CbftZ1CUZQQGjn9eA6DkQz2XJGMusg8B3pWQUh18vt5X",
     "Token Account": "GAVd7eFhkwiNt8pgFMBqtKBEBdD47FaWyHPR8AnKHtky",
     "Quantity": 6850000.0,
@@ -128,7 +112,7 @@
     "Value": 20.63
   },
   {
-    "Rank": 17,
+    "Rank": 15,
     "Account (Owner)": "2CzU973xpteDtRwqnC6LJxE6YLv46QhVgMgzyiTPWD5n",
     "Token Account": "Ee5WCvzQWdUBPs6vu5QtTDXKpY3PNAXUfC4vhjt7aq8m",
     "Quantity": 6812000.0,
@@ -136,7 +120,7 @@
     "Value": 20.51
   },
   {
-    "Rank": 18,
+    "Rank": 16,
     "Account (Owner)": "GDYRp5tXQ8CV2DGAxkgABF57dYuGFbPcLx2Nmh5bjaLy",
     "Token Account": "4NgSBchhHXfRNprWqA1iSjNHCaERBYpUsQHJeKngJCzT",
     "Quantity": 6500000.0,
@@ -144,7 +128,7 @@
     "Value": 19.57
   },
   {
-    "Rank": 19,
+    "Rank": 17,
     "Account (Owner)": "3PgwhyiQSuSSgo3xh3pzUEccMggPmersg4UfYgzdtpwJ",
     "Token Account": "DfccdvEu66QUwskcJHKqgXyHJXSKQyCAFSZ5tXfXe3Zw",
     "Quantity": 5950000.0,
@@ -152,7 +136,7 @@
     "Value": 17.92
   },
   {
-    "Rank": 20,
+    "Rank": 18,
     "Account (Owner)": "CVvMofFwJzR5vYGesVTV2cBZiiaXEBFMAfUDh1JHM2rs",
     "Token Account": "3JR2kjZLW7Lc3W1S5LhvKDnJYpW7RRyXJ7ybEQsQUHEr",
     "Quantity": 5700415.815319,
@@ -160,7 +144,7 @@
     "Value": 17.16
   },
   {
-    "Rank": 21,
+    "Rank": 19,
     "Account (Owner)": "p9UfCjtsmzo68VHABJt3dtqsZ3kkMWe84h6k13wbd5G",
     "Token Account": "A84Ub2iqXH3Vbgd6wch2ZwRRgg38HA14eaBUKJTubBBy",
     "Quantity": 5500000.0,
@@ -168,7 +152,7 @@
     "Value": 16.56
   },
   {
-    "Rank": 22,
+    "Rank": 20,
     "Account (Owner)": "862h1z4sm9Cn9ZC4YrWCcUen3CrNzDbrZWZFx5vFthHY",
     "Token Account": "Hj9UPaH8FoQP9Rgwq6XYSiF7MCHW341CcoszF9kzBTi",
     "Quantity": 5355455.315616,
@@ -176,7 +160,7 @@
     "Value": 16.13
   },
   {
-    "Rank": 23,
+    "Rank": 21,
     "Account (Owner)": "3JpxYvisMZBTESkPw3LsZHCf14de1Tp8r7PKaa8Dxtp1",
     "Token Account": "EefVaHr1t1japtQP7yPQud6SpzDs6kTxDj5hmFx4AmEa",
     "Quantity": 5000500.0,
@@ -184,7 +168,7 @@
     "Value": 15.06
   },
   {
-    "Rank": 24,
+    "Rank": 22,
     "Account (Owner)": "69YTf1Mg9U4E8gGv3Dp79qMEXPyrY8rpej6gfGDh3p3b",
     "Token Account": "Fb1Q2ur6ieRfUnDsN3v9tgcSB4oHxMeTmUBGtPXZRdFX",
     "Quantity": 5000460.17276,
@@ -192,7 +176,7 @@
     "Value": 15.06
   },
   {
-    "Rank": 25,
+    "Rank": 23,
     "Account (Owner)": "4MZcSie1WdnURcAatasfM8tqJS8HCd5G5QqKhN9cCbcs",
     "Token Account": "3DEBq67jADeUiJE1WazPQoS4MUiYH81g9qURU8FFHDGK",
     "Quantity": 5000000.0,
@@ -200,7 +184,7 @@
     "Value": 15.05
   },
   {
-    "Rank": 26,
+    "Rank": 24,
     "Account (Owner)": "9gry4Xhg1dbAUgGjcoRvpwa2LuFRQgBb8RMczMMSj3Zh",
     "Token Account": "76pwYYpzTBKihe1p7TXNi5M8t31cqMRoXHPT3gEt12Qk",
     "Quantity": 4832000.0,
@@ -208,7 +192,7 @@
     "Value": 14.55
   },
   {
-    "Rank": 27,
+    "Rank": 25,
     "Account (Owner)": "5HoQTcKz9DxYpAzRZ3bWbTZxa8S3eGd5q1ir4vZeqY7s",
     "Token Account": "ErE8c9NqAu4HiyoZxAuqhPgZrNtusvBNvhnrjsNsDcmS",
     "Quantity": 3500000.0,
@@ -216,7 +200,7 @@
     "Value": 10.54
   },
   {
-    "Rank": 28,
+    "Rank": 26,
     "Account (Owner)": "3y4cQsoKTfQc9zmFxkeabFPJiH7BV9VmAHz32bMrkuJ6",
     "Token Account": "CunGe9dSSwLfN7UbzniW8jifX66FVMysxYkAiBTSdtUQ",
     "Quantity": 3200000.0,
@@ -224,7 +208,7 @@
     "Value": 9.64
   },
   {
-    "Rank": 29,
+    "Rank": 27,
     "Account (Owner)": "6xHGa2KkSJ8i12jfawM8wFzK1WDEmedgv9YgtKoV6VrP",
     "Token Account": "EMy8Gc7nHCVtmfZUY9KUg6gNejcm58UjamoyLRiVgF98",
     "Quantity": 3200000.0,
@@ -232,7 +216,7 @@
     "Value": 9.64
   },
   {
-    "Rank": 30,
+    "Rank": 28,
     "Account (Owner)": "svkccV2X229idgV4MHAkaAHijPhNjpntviCQWY3K9cC",
     "Token Account": "14Bik6hAh4i1eyB9r2P1qXFfz6KTJLRtSMU2jbYcfnpL",
     "Quantity": 2900000.0,
@@ -240,7 +224,7 @@
     "Value": 8.73
   },
   {
-    "Rank": 31,
+    "Rank": 29,
     "Account (Owner)": "2oRvSXUHcTZapBovi5ecEAb1GyR21Macvwnr1KuH61pU",
     "Token Account": "GXofQe5heb5AcAfpS4bxbBCT3NxbNV1YJu9MA5a8sZn",
     "Quantity": 2580000.0,
@@ -248,7 +232,7 @@
     "Value": 7.77
   },
   {
-    "Rank": 32,
+    "Rank": 30,
     "Account (Owner)": "8oDGQW4z5qNi99WWDooymtRARoi5uanaZ5rrDUAa8qG8",
     "Token Account": "DMGKbCxHky4fzv1rwc9Y2eEJKLJyCQzDk19TYVkYHhjb",
     "Quantity": 2208260.475296,
@@ -256,7 +240,7 @@
     "Value": 6.65
   },
   {
-    "Rank": 33,
+    "Rank": 31,
     "Account (Owner)": "HLLuLvCUFkzypbMkXPzGBKZxhNt6b2AveDLwRyDFCTd9",
     "Token Account": "BZacw6SzNmtFhvYh7yDaFN1kE6BZQWnkpMhtQYRpVGtX",
     "Quantity": 2193649.80521,
@@ -264,7 +248,7 @@
     "Value": 6.61
   },
   {
-    "Rank": 34,
+    "Rank": 32,
     "Account (Owner)": "8xsN8LYNG6XGXK1dxDPXSnu253rSRYhBXSJSQMXeGRnL",
     "Token Account": "JCapcMy34rBZUpFTM6RoWpp8PTCBHVph56873owBAhGK",
     "Quantity": 1257687.162956,
@@ -272,7 +256,7 @@
     "Value": 3.79
   },
   {
-    "Rank": 35,
+    "Rank": 33,
     "Account (Owner)": "CaPMwSVArqazkiEhpMc6e1Fhph4bb2fPgLzzZpW8BgHg",
     "Token Account": "7RRF3d2cgigephpmHD5LQgv3AG7ChcQUxgiMnj2es8Tj",
     "Quantity": 1155794.862928,
@@ -280,7 +264,7 @@
     "Value": 3.48
   },
   {
-    "Rank": 36,
+    "Rank": 34,
     "Account (Owner)": "4gmazTcYyPBT6eZXecmqL8SfqLk1C46dUT6bU5SmEMCb",
     "Token Account": "Rqb19BxSuuJUYfG6Lbzpr5inaXd3cD2m1HehTiQHAV8",
     "Quantity": 1054269.552837,
@@ -288,7 +272,7 @@
     "Value": 3.17
   },
   {
-    "Rank": 37,
+    "Rank": 35,
     "Account (Owner)": "F5E7EGttZH1fMTYdvZGkmGoP9aoXtUg6beXQqNX6z6Yv",
     "Token Account": "28U51R59mWVNuBjYvnVwhZtorJH5JtmwYD6ne9b3x2QB",
     "Quantity": 974389.896457,
@@ -296,7 +280,7 @@
     "Value": 2.93
   },
   {
-    "Rank": 38,
+    "Rank": 36,
     "Account (Owner)": "5LwT59BZfrN8bA7EASwC7VkNWohnQ2kwGZx9raKPKpxj",
     "Token Account": "3iQvYxCZG7HAtNfqTNp4BF3EhQtCubEWBmQ98euujDQA",
     "Quantity": 949374.191119,
@@ -304,7 +288,7 @@
     "Value": 2.86
   },
   {
-    "Rank": 39,
+    "Rank": 37,
     "Account (Owner)": "6rybpaJ4y4dyj1icATkZGA5nZxGi8eNB2PK8DnR8hQoq",
     "Token Account": "GWb6Ws9cGM99cUKrrDFv5vAcBtNG6JpdaevKtuLJ9FHb",
     "Quantity": 878572.635227,
@@ -312,7 +296,7 @@
     "Value": 2.65
   },
   {
-    "Rank": 40,
+    "Rank": 38,
     "Account (Owner)": "FUvRMnMGMS3TK1Vz9MGjGirGWBPj8b2cTg6DhpnxAC7v",
     "Token Account": "F3LU3KGgaFFbquRTz5gxvC82VezByJAnvgZ2cWD8jw9J",
     "Quantity": 865583.733508,
@@ -320,7 +304,7 @@
     "Value": 2.61
   },
   {
-    "Rank": 41,
+    "Rank": 39,
     "Account (Owner)": "BovhkmgzLreEnYLVat6sp9QWCbU4PWhrNMQs3k5YsS6o",
     "Token Account": "4utuR6VvCurRu7kHS8nEbiWGQMLEw7zPdt7WGsHd69go",
     "Quantity": 693494.44211,
@@ -328,7 +312,7 @@
     "Value": 2.09
   },
   {
-    "Rank": 42,
+    "Rank": 40,
     "Account (Owner)": "8psNvWTrdNTiVRNzAgsou9kETXNJm2SXZyaKuJraVRtf",
     "Token Account": "FVt6xdXy3HMXDk55WCYFH4zMBW2MbGGULMY9DNhYXQFv",
     "Quantity": 692627.544466,
@@ -336,7 +320,7 @@
     "Value": 2.09
   },
   {
-    "Rank": 43,
+    "Rank": 41,
     "Account (Owner)": "6SoCiMVX3D5ndaUuNFAQNWKAXhHj5RZxUHUT4nYDYpqK",
     "Token Account": "Ey88Qpzh7BMUAstAiWWS6ezqnVfcLtnmPT6GG9GbcGgW",
     "Quantity": 648154.090733,
@@ -344,7 +328,7 @@
     "Value": 1.95
   },
   {
-    "Rank": 44,
+    "Rank": 42,
     "Account (Owner)": "68Z8hZJSjHMLGSGQ9DPcvvHLEZccjc697m5dccz51ctr",
     "Token Account": "HvHmNhnndEjdAGoHpgE2wyPgchYG1V3J9HJ8dKXaioXX",
     "Quantity": 477409.406821,
@@ -352,7 +336,7 @@
     "Value": 1.44
   },
   {
-    "Rank": 45,
+    "Rank": 43,
     "Account (Owner)": "7obeoSvpmoQnMHenyQfs2xpRqfFHuoQpgojB1qdzixh8",
     "Token Account": "8SxsDh8YEfP8RkGNsuk8dLBuVsXxQVAXKdb7wmG9TGJL",
     "Quantity": 454343.428726,
@@ -360,7 +344,7 @@
     "Value": 1.37
   },
   {
-    "Rank": 46,
+    "Rank": 44,
     "Account (Owner)": "gB5Qx3KPtqyEAAkjs4wGjCy5KjjZv5HhTcnmYyXXTAJ",
     "Token Account": "FoFg1RexjEZS14zB52Yb6ALPJ51CmUJJyhAmT1fLALTx",
     "Quantity": 308028.435265,
@@ -368,7 +352,7 @@
     "Value": 0.93
   },
   {
-    "Rank": 47,
+    "Rank": 45,
     "Account (Owner)": "8EeDkgwXPpsewH2ev2hR9pJVDQ5rfSshRGvXTk9AGpiz",
     "Token Account": "7sX87UdHFoCycrP6xDsAjE2wBEitQVPuM987XhdGN3Zc",
     "Quantity": 280000.0,
@@ -376,7 +360,7 @@
     "Value": 0.84
   },
   {
-    "Rank": 48,
+    "Rank": 46,
     "Account (Owner)": "4QARSGFFcL5k89zAQesqFSHPbrzjCcEZu8NF5Gee6Toz",
     "Token Account": "BEgj3LHQrgUkZQFCgisHBiB4SinP9418A4qVTir1k5AM",
     "Quantity": 274961.714403,
@@ -384,7 +368,7 @@
     "Value": 0.83
   },
   {
-    "Rank": 49,
+    "Rank": 47,
     "Account (Owner)": "89q3zEgHzuPSYkrSq1TANDqP7HJMLAnxxXtCJGEnVqB4",
     "Token Account": "HA4bTarbQy53XkuZLAvfLfVVeBgLfCECdW3HTqXgkQHP",
     "Quantity": 164686.305384,
@@ -392,11 +376,27 @@
     "Value": 0.5
   },
   {
-    "Rank": 50,
+    "Rank": 48,
     "Account (Owner)": "GNeAcdQj11JNg7cqfnM8QTPVpBKvUGSKAtp8fSsWgbuR",
     "Token Account": "HsrusRH5SyBrBLhFKjA1XeT3WQYhXQTKHEsQyBAUqr5R",
     "Quantity": 145949.470109,
     "%": 0.01,
     "Value": 0.44
+  },
+  {
+    "Rank": 49,
+    "Account (Owner)": "CLVh82bVkAg8psJfXFUaVwWJmHuKFNtZwGcWmtsiVLNt",
+    "Token Account": "3LdBcsUDtgxSppLUNNx2KntGrMXSu5TNeXTWZw2p9wuJ",
+    "Quantity": 58482.288006,
+    "%": 0.01,
+    "Value": 0.18
+  },
+  {
+    "Rank": 50,
+    "Account (Owner)": "59FCufE6kYE7kKBRrz9QbWCeWAtsmzgB3RpQyofwAwPt",
+    "Token Account": "DbxVw2RNwMdnvBzTJUX5ozMQKBuXUBW64AR1jtTYum1j",
+    "Quantity": 37835.721931,
+    "%": 0.0,
+    "Value": 0.11
   }
 ]
