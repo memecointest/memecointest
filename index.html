@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 50 Holders - Live</title>
+    <style>
+        /* Stiluri minime funcționale – designerul le va rescrie */
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
+        th { background: #f5f5f5; }
+        .number { text-align: right; }
+        .address { font-family: monospace; }
+        .error { color: red; padding: 20px; }
+        .last-update { margin-top: 10px; font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+    <h1>Top 50 Token Holders</h1>
+    <div id="table-container">
+        <p>Loading data...</p>
+    </div>
+    <div id="last-update" class="last-update"></div>
+
+    <script>
+        const container = document.getElementById('table-container');
+        const lastUpdateDiv = document.getElementById('last-update');
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        function renderError(msg) {
+            container.innerHTML = `<div class="error">${escapeHtml(msg)}</div>`;
+        }
+
+        function renderTable(data) {
+            if (!Array.isArray(data) || data.length === 0) {
+                renderError('No holder data found.');
+                return;
+            }
+
+            let html = `<table id="holders-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Account (Owner)</th>
+                        <th>Token Account</th>
+                        <th>Quantity</th>
+                        <th>%</th>
+                        <th>Value (USD)</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            data.forEach(row => {
+                const rank = row["Rank"];
+                const owner = row["Account (Owner)"] || '';
+                const tokenAcc = row["Token Account"] || '';
+                const quantity = typeof row["Quantity"] === 'number' 
+                    ? row["Quantity"].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) 
+                    : row["Quantity"];
+                const percentage = typeof row["%"] === 'number' ? row["%"].toFixed(2) : row["%"];
+                const value = typeof row["Value"] === 'number' ? row["Value"].toFixed(2) : row["Value"];
+
+                html += `<tr>
+                    <td class="number">${rank}</td>
+                    <td class="address">${escapeHtml(owner)}</td>
+                    <td class="address">${escapeHtml(tokenAcc)}</td>
+                    <td class="number">${quantity}</td>
+                    <td class="number">${percentage}%</td>
+                    <td class="number">$${value}</td>
+                </tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        async function loadData() {
+            try {
+                // Cache busting pentru a evita varianta cache-uită
+                const url = `date.json?t=${Date.now()}`;
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const json = await response.json();
+                if (json.error) {
+                    throw new Error(json.error);
+                }
+                renderTable(json);
+                lastUpdateDiv.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+            } catch (err) {
+                // Nu suprascriem tabelul vechi dacă există, doar arătăm eroarea în consolă
+                console.error('Failed to load data:', err);
+                // Dacă e prima încărcare și avem eroare, arătăm mesaj
+                if (!container.innerHTML.includes('<table')) {
+                    renderError(`Failed to load data: ${err.message}`);
+                }
+            }
+        }
+
+        // Prima încărcare
+        loadData();
+        // Refresh la fiecare 30 secunde
+        setInterval(loadData, 30000);
+    </script>
+</body>
+</html>
