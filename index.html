@@ -3,115 +3,754 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 50 Holders - Live</title>
+    <title>Top 50 Holders — Live</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        /* Stiluri minime funcționale – designerul le va rescrie */
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; }
-        th { background: #f5f5f5; }
-        .number { text-align: right; }
-        .address { font-family: monospace; }
-        .error { color: red; padding: 20px; }
-        .last-update { margin-top: 10px; font-size: 0.9em; color: #666; }
+        /* ─── RESET ─────────────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ─── TOKENS ─────────────────────────────────────────── */
+        :root {
+            --void:    #0D0B14;
+            --deep:    #150F22;
+            --mauve:   #2A1F3D;
+            --gold:    #C8A84B;
+            --gold-dim:#7A6330;
+            --gold-glow: rgba(200,168,75,0.18);
+            --gold-pulse: rgba(200,168,75,0.06);
+            --dirty:   #E8E2D5;
+            --muted:   #7A7068;
+            --flash:   #FFFFFF;
+            --error:   #A84B4B;
+
+            --font-display: 'Teko', sans-serif;
+            --font-mono:    'IBM Plex Mono', monospace;
+        }
+
+        /* ─── BASE ───────────────────────────────────────────── */
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--void);
+            color: var(--dirty);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            font-weight: 300;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── GRAIN TEXTURE ──────────────────────────────────── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 1;
+        }
+
+        /* ─── LAYOUT ─────────────────────────────────────────── */
+        .page-wrap {
+            position: relative;
+            z-index: 1;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        /* ─── HEADER ─────────────────────────────────────────── */
+        .site-header {
+            padding: 48px 0 40px;
+            border-bottom: 1px solid var(--mauve);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .header-left { flex: 1 1 auto; }
+
+        .coin-eyebrow {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .coin-title {
+            font-family: var(--font-display);
+            font-size: clamp(52px, 8vw, 96px);
+            font-weight: 700;
+            line-height: 0.88;
+            letter-spacing: -0.01em;
+            color: var(--flash);
+            text-transform: uppercase;
+        }
+
+        .coin-title span {
+            color: var(--gold);
+        }
+
+        .coin-sub {
+            margin-top: 14px;
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+        }
+
+        .header-right {
+            flex: 0 0 auto;
+            text-align: right;
+        }
+
+        /* ─── SYNC INDICATOR ─────────────────────────────────── */
+        .sync-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--gold-dim);
+            border-radius: 2px;
+            padding: 6px 14px;
+            font-size: 10px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .sync-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .sync-dot.live {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%       { opacity: 0.3; transform: scale(0.7); }
+        }
+
+        .sync-time {
+            display: block;
+            margin-top: 8px;
+            font-size: 10px;
+            color: var(--muted);
+            text-align: right;
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── SECTION LABEL ──────────────────────────────────── */
+        .section-label {
+            margin: 40px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-label-text {
+            font-family: var(--font-display);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold-dim);
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--mauve) 0%, transparent 100%);
+        }
+
+        /* ─── TABLE WRAPPER ──────────────────────────────────── */
+        .table-wrapper {
+            margin-top: 0;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ─── TABLE ──────────────────────────────────────────── */
+        #holders-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        #holders-table colgroup col:nth-child(1) { width: 72px; }
+        #holders-table colgroup col:nth-child(2) { width: 30%; }
+        #holders-table colgroup col:nth-child(3) { width: 30%; }
+        #holders-table colgroup col:nth-child(4) { width: 15%; }
+        #holders-table colgroup col:nth-child(5) { width: 8%; }
+        #holders-table colgroup col:nth-child(6) { width: 13%; }
+
+        /* HEAD */
+        #holders-table thead tr {
+            border-bottom: 1px solid var(--mauve);
+        }
+
+        #holders-table thead th {
+            padding: 14px 12px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        #holders-table thead th.col-num { text-align: right; }
+
+        /* BODY ROWS */
+        #holders-table tbody tr {
+            border-bottom: 1px solid rgba(42,31,61,0.6);
+            transition: background 0.15s ease;
+            position: relative;
+        }
+
+        #holders-table tbody tr:hover {
+            background: var(--gold-pulse);
+        }
+
+        /* TOP 3 SPECIAL */
+        #holders-table tbody tr.top-1 { background: rgba(200,168,75,0.07); }
+        #holders-table tbody tr.top-2 { background: rgba(200,168,75,0.04); }
+        #holders-table tbody tr.top-3 { background: rgba(200,168,75,0.02); }
+
+        #holders-table tbody tr.top-1:hover { background: rgba(200,168,75,0.12); }
+        #holders-table tbody tr.top-2:hover { background: rgba(200,168,75,0.09); }
+        #holders-table tbody tr.top-3:hover { background: rgba(200,168,75,0.06); }
+
+        /* CELLS */
+        #holders-table tbody td {
+            padding: 11px 12px;
+            vertical-align: middle;
+            font-size: 12px;
+            color: var(--dirty);
+        }
+
+        /* RANK CELL — the signature */
+        .cell-rank {
+            position: relative;
+            text-align: right;
+            padding-right: 16px !important;
+            overflow: hidden;
+        }
+
+        .rank-num {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--dirty);
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Ghost numeral behind top-3 ranks */
+        .rank-ghost {
+            position: absolute;
+            right: -4px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 56px;
+            line-height: 1;
+            color: var(--gold);
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
+        }
+
+        .top-1 .rank-num { color: var(--gold); }
+        .top-2 .rank-num { color: #A89060; }
+        .top-3 .rank-num { color: #8A7255; }
+
+        .top-1 .rank-ghost { opacity: 0.12; }
+
+        /* ADDRESS cells */
+        .cell-addr {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--muted);
+            letter-spacing: 0.02em;
+        }
+
+        .cell-addr .addr-text {
+            display: inline;
+        }
+
+        /* Copyable address interaction */
+        .addr-copy {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--muted);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            padding: 0;
+            letter-spacing: 0.02em;
+            text-align: left;
+            width: 100%;
+            transition: color 0.15s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+
+        .addr-copy:hover,
+        .addr-copy:focus {
+            color: var(--gold);
+            outline: none;
+        }
+
+        .addr-copy:focus-visible {
+            outline: 1px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        .addr-copied {
+            color: var(--gold) !important;
+        }
+
+        /* NUMBER cells */
+        .cell-num {
+            text-align: right;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+        }
+
+        /* BAR cell for % */
+        .cell-pct {
+            text-align: right;
+        }
+
+        .pct-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .pct-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--dirty);
+        }
+
+        .pct-bar-track {
+            width: 60px;
+            height: 2px;
+            background: var(--mauve);
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .pct-bar-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 1px;
+            transition: width 0.4s ease;
+        }
+
+        .cell-value {
+            text-align: right;
+            font-weight: 500;
+            color: var(--dirty);
+        }
+
+        /* ─── UPDATED FLASH ──────────────────────────────────── */
+        @keyframes row-flash {
+            0%   { background-color: rgba(200,168,75,0.18); }
+            100% { background-color: transparent; }
+        }
+
+        .row-updated {
+            animation: row-flash 0.8s ease-out forwards;
+        }
+
+        /* ─── LOADING STATE ──────────────────────────────────── */
+        .loading-state {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .loading-glyph {
+            font-family: var(--font-display);
+            font-size: 64px;
+            font-weight: 700;
+            color: var(--mauve);
+            letter-spacing: -0.02em;
+            animation: loading-blink 1.2s steps(2) infinite;
+            display: block;
+        }
+
+        @keyframes loading-blink {
+            0%   { opacity: 1; }
+            50%  { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        .loading-label {
+            margin-top: 16px;
+            font-size: 10px;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* ─── ERROR STATE ────────────────────────────────────── */
+        .error-state {
+            padding: 48px 0;
+            text-align: center;
+        }
+
+        .error-glyph {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--error);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .error-msg {
+            font-size: 11px;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .error-detail {
+            display: block;
+            margin-top: 6px;
+            font-size: 10px;
+            color: var(--error);
+            opacity: 0.7;
+        }
+
+        /* ─── FOOTER ─────────────────────────────────────────── */
+        .site-footer {
+            margin-top: 64px;
+            padding-top: 24px;
+            border-top: 1px solid var(--mauve);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-note {
+            font-size: 10px;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        .footer-chain {
+            font-family: var(--font-display);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            color: var(--gold-dim);
+            text-transform: uppercase;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────────────── */
+        @media (max-width: 700px) {
+            .site-header { flex-direction: column; align-items: flex-start; }
+            .header-right { align-self: flex-start; }
+            .sync-time { text-align: left; }
+
+            #holders-table colgroup col:nth-child(3) { width: 0; display: none; }
+            .col-token-acc { display: none; }
+
+            #holders-table colgroup col:nth-child(2) { width: 45%; }
+
+            .pct-bar-track { width: 36px; }
+        }
+
+        @media (max-width: 460px) {
+            .page-wrap { padding: 0 16px 60px; }
+            .coin-title { font-size: 48px; }
+        }
+
+        /* ─── REDUCED MOTION ─────────────────────────────────── */
+        @media (prefers-reduced-motion: reduce) {
+            .sync-dot.live { animation: none; opacity: 1; }
+            .loading-glyph { animation: none; opacity: 0.4; }
+            .row-updated { animation: none; }
+            .pct-bar-fill { transition: none; }
+        }
     </style>
 </head>
 <body>
-    <h1>Top 50 Token Holders</h1>
-    <div id="table-container">
-        <p>Loading data...</p>
+
+<div class="page-wrap">
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-left">
+            <p class="coin-eyebrow">Solana · Live Leaderboard</p>
+            <h1 class="coin-title">Top <span>50</span><br>Holders</h1>
+            <p class="coin-sub">Wallets ranked by current bag size — updates every 30 seconds</p>
+        </div>
+        <div class="header-right">
+            <div class="sync-badge">
+                <span class="sync-dot live" id="sync-dot"></span>
+                <span id="sync-label">Syncing</span>
+            </div>
+            <span class="sync-time" id="last-update"></span>
+        </div>
+    </header>
+
+    <!-- SECTION LABEL -->
+    <div class="section-label">
+        <span class="section-label-text">Ranked Holders</span>
     </div>
-    <div id="last-update" class="last-update"></div>
 
-    <script>
-        const container = document.getElementById('table-container');
-        const lastUpdateDiv = document.getElementById('last-update');
+    <!-- TABLE AREA -->
+    <div class="table-wrapper">
+        <div id="table-container">
+            <div class="loading-state">
+                <span class="loading-glyph">◈</span>
+                <p class="loading-label">Summoning the whales…</p>
+            </div>
+        </div>
+    </div>
 
-        function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return String(text).replace(/[&<>"']/g, m => map[m]);
-        }
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <span class="footer-note">Data sourced on-chain · Solana mainnet</span>
+        <span class="footer-chain">◎ Solana</span>
+    </footer>
 
-        function renderError(msg) {
-            container.innerHTML = `<div class="error">${escapeHtml(msg)}</div>`;
-        }
+</div><!-- /page-wrap -->
 
-        function renderTable(data) {
-            if (!Array.isArray(data) || data.length === 0) {
-                renderError('No holder data found.');
-                return;
-            }
+<script>
+    const container   = document.getElementById('table-container');
+    const lastUpdDiv  = document.getElementById('last-update');
+    const syncLabel   = document.getElementById('sync-label');
+    const syncDot     = document.getElementById('sync-dot');
 
-            let html = `<table id="holders-table">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Account (Owner)</th>
-                        <th>Token Account</th>
-                        <th>Quantity</th>
-                        <th>%</th>
-                        <th>Value (USD)</th>
-                    </tr>
-                </thead>
-                <tbody>`;
+    /* ── helpers ───────────────────────────────────────────────── */
 
-            data.forEach(row => {
-                const rank = row["Rank"];
-                const owner = row["Account (Owner)"] || '';
-                const tokenAcc = row["Token Account"] || '';
-                const quantity = typeof row["Quantity"] === 'number' 
-                    ? row["Quantity"].toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 6 }) 
-                    : row["Quantity"];
-                const percentage = typeof row["%"] === 'number' ? row["%"].toFixed(2) : row["%"];
-                const value = typeof row["Value"] === 'number' ? row["Value"].toFixed(2) : row["Value"];
+    function escapeHtml(text) {
+        const map = { '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' };
+        return String(text).replace(/[&<>"']/g, m => map[m]);
+    }
 
-                html += `<tr>
-                    <td class="number">${rank}</td>
-                    <td class="address">${escapeHtml(owner)}</td>
-                    <td class="address">${escapeHtml(tokenAcc)}</td>
-                    <td class="number">${quantity}</td>
-                    <td class="number">${percentage}%</td>
-                    <td class="number">$${value}</td>
-                </tr>`;
-            });
+    function shortenAddr(addr) {
+        if (!addr || addr.length < 12) return addr;
+        return addr.slice(0, 5) + '…' + addr.slice(-5);
+    }
 
-            html += '</tbody></table>';
-            container.innerHTML = html;
-        }
+    function fmtQuantity(n) {
+        if (typeof n !== 'number') return escapeHtml(String(n));
+        return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+    }
 
-        async function loadData() {
+    function fmtPct(n) {
+        if (typeof n !== 'number') return escapeHtml(String(n));
+        return n.toFixed(2);
+    }
+
+    function fmtValue(n) {
+        if (typeof n !== 'number') return escapeHtml(String(n));
+        return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    /* ── copy to clipboard ─────────────────────────────────────── */
+
+    function bindCopy(btn, fullAddr) {
+        btn.addEventListener('click', async () => {
             try {
-                // Cache busting pentru a evita varianta cache-uită
-                const url = `date.json?t=${Date.now()}`;
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                const json = await response.json();
-                if (json.error) {
-                    throw new Error(json.error);
-                }
-                renderTable(json);
-                lastUpdateDiv.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
-            } catch (err) {
-                // Nu suprascriem tabelul vechi dacă există, doar arătăm eroarea în consolă
-                console.error('Failed to load data:', err);
-                // Dacă e prima încărcare și avem eroare, arătăm mesaj
-                if (!container.innerHTML.includes('<table')) {
-                    renderError(`Failed to load data: ${err.message}`);
-                }
-            }
+                await navigator.clipboard.writeText(fullAddr);
+                const prev = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.classList.add('addr-copied');
+                setTimeout(() => {
+                    btn.textContent = prev;
+                    btn.classList.remove('addr-copied');
+                }, 1500);
+            } catch(_) {}
+        });
+    }
+
+    /* ── find max pct for bar scaling ──────────────────────────── */
+
+    let prevData = null;
+
+    function maxPct(data) {
+        let m = 0;
+        data.forEach(r => { if (typeof r['%'] === 'number' && r['%'] > m) m = r['%']; });
+        return m || 1;
+    }
+
+    /* ── render ─────────────────────────────────────────────────── */
+
+    function renderTable(data) {
+        if (!Array.isArray(data) || data.length === 0) {
+            renderError('No holder data found.');
+            return;
         }
 
-        // Prima încărcare
-        loadData();
-        // Refresh la fiecare 30 secunde
-        setInterval(loadData, 30000);
-    </script>
+        const top = maxPct(data);
+
+        /* Build lookup of previous values for flash detection */
+        const prevMap = {};
+        if (prevData) {
+            prevData.forEach(r => {
+                const key = r['Token Account'] || r['Account (Owner)'];
+                if (key) prevMap[key] = r['Quantity'];
+            });
+        }
+
+        let html = `
+        <table id="holders-table">
+            <colgroup>
+                <col/><col/><col/><col/><col/><col/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th class="col-num">#</th>
+                    <th>Wallet (Owner)</th>
+                    <th class="col-token-acc">Token Account</th>
+                    <th class="col-num">Balance</th>
+                    <th class="col-num">Share</th>
+                    <th class="col-num">Value (USD)</th>
+                </tr>
+            </thead>
+            <tbody>`;
+
+        data.forEach((row, i) => {
+            const rank     = row['Rank']  ?? (i + 1);
+            const owner    = row['Account (Owner)'] || '';
+            const tokenAcc = row['Token Account']   || '';
+            const pct      = fmtPct(row['%']);
+            const pctRaw   = typeof row['%'] === 'number' ? row['%'] : 0;
+            const barW     = Math.min(100, (pctRaw / top) * 100).toFixed(1);
+            const qty      = fmtQuantity(row['Quantity']);
+            const val      = fmtValue(row['Value']);
+
+            /* detect changed value for flash */
+            const key      = tokenAcc || owner;
+            const changed  = prevMap[key] !== undefined && prevMap[key] !== row['Quantity'];
+
+            const topClass = rank === 1 ? 'top-1' : rank === 2 ? 'top-2' : rank === 3 ? 'top-3' : '';
+            const flashCls = changed ? 'row-updated' : '';
+
+            const showGhost = rank <= 3;
+
+            html += `
+            <tr class="${topClass} ${flashCls}" data-rank="${rank}">
+                <td class="cell-rank">
+                    ${showGhost ? `<span class="rank-ghost">${rank}</span>` : ''}
+                    <span class="rank-num">${rank}</span>
+                </td>
+                <td class="cell-addr">
+                    <button class="addr-copy" title="${escapeHtml(owner)}" data-full="${escapeHtml(owner)}">
+                        ${escapeHtml(shortenAddr(owner))}
+                    </button>
+                </td>
+                <td class="cell-addr col-token-acc">
+                    <button class="addr-copy" title="${escapeHtml(tokenAcc)}" data-full="${escapeHtml(tokenAcc)}">
+                        ${escapeHtml(shortenAddr(tokenAcc))}
+                    </button>
+                </td>
+                <td class="cell-num">${qty}</td>
+                <td class="cell-pct">
+                    <div class="pct-wrap">
+                        <span class="pct-label">${pct}%</span>
+                        <div class="pct-bar-track">
+                            <div class="pct-bar-fill" style="width:${barW}%"></div>
+                        </div>
+                    </div>
+                </td>
+                <td class="cell-value">$${val}</td>
+            </tr>`;
+        });
+
+        html += '</tbody></table>';
+        container.innerHTML = html;
+
+        /* bind copy buttons */
+        container.querySelectorAll('.addr-copy').forEach(btn => {
+            bindCopy(btn, btn.dataset.full || '');
+        });
+
+        prevData = data;
+    }
+
+    /* ── error ──────────────────────────────────────────────────── */
+
+    function renderError(msg, detail) {
+        if (container.querySelector('#holders-table')) return; /* keep stale table */
+        container.innerHTML = `
+        <div class="error-state">
+            <span class="error-glyph">◈</span>
+            <p class="error-msg">Couldn't reach the chain right now.</p>
+            <span class="error-detail">${escapeHtml(msg)}${detail ? ' — ' + escapeHtml(detail) : ''}</span>
+        </div>`;
+    }
+
+    /* ── sync UI ────────────────────────────────────────────────── */
+
+    function setSyncing(active) {
+        if (active) {
+            syncDot.classList.add('live');
+            syncLabel.textContent = 'Syncing';
+        } else {
+            syncDot.classList.remove('live');
+            syncLabel.textContent = 'Live';
+            /* re-add live class after brief pause */
+            setTimeout(() => syncDot.classList.add('live'), 400);
+        }
+    }
+
+    /* ── fetch ──────────────────────────────────────────────────── */
+
+    async function loadData() {
+        setSyncing(true);
+        try {
+            const url      = `date.json?t=${Date.now()}`;
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const json = await response.json();
+            if (json.error) throw new Error(json.error);
+            renderTable(json);
+            const now = new Date();
+            lastUpdDiv.textContent = `Refreshed ${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
+            setSyncing(false);
+        } catch (err) {
+            console.error('Failed to load data:', err);
+            renderError(err.message);
+            syncLabel.textContent = 'Error';
+            syncDot.classList.remove('live');
+        }
+    }
+
+    loadData();
+    setInterval(loadData, 30000);
+</script>
 </body>
 </html>
