@@ -540,10 +540,6 @@ body {
   <div class="bg-scanlines"></div>
 </div>
 
-<div class="countdown-wrap" aria-hidden="true">
-  <div class="countdown-bar" id="countdown-bar" style="width:100%"></div>
-</div>
-
 <div class="page">
 
   <header class="header">
@@ -582,10 +578,6 @@ body {
 
   <!-- STATUS below table -->
   <div class="status-bar">
-    <div class="live-pill">
-      <span class="live-dot" id="live-dot"></span>
-      <span class="live-text" id="live-label">Live</span>
-    </div>
     <span class="last-sync" id="last-sync">—</span>
   </div>
 
@@ -596,9 +588,6 @@ body {
 const podiumEl    = document.getElementById('podium');
 const tableEl     = document.getElementById('table-container');
 const lastSyncEl  = document.getElementById('last-sync');
-const liveLabelEl = document.getElementById('live-label');
-const liveDotEl   = document.getElementById('live-dot');
-const cntBar      = document.getElementById('countdown-bar');
 
 let prevData     = null;
 let countdownInt = null;
@@ -824,33 +813,8 @@ function renderError(msg) {
     </div>`;
 }
 
-/* ─── SYNC UI ──────────────────────── */
-function setSyncing(active) {
-  if (active) {
-    liveLabelEl.textContent = 'Syncing…';
-    liveDotEl.style.background  = 'var(--gold)';
-    liveDotEl.style.boxShadow   = '0 0 8px var(--gold)';
-  } else {
-    liveLabelEl.textContent = 'Live';
-    liveDotEl.style.background  = 'var(--cyan)';
-    liveDotEl.style.boxShadow   = '0 0 8px var(--cyan)';
-  }
-}
-
-/* ─── COUNTDOWN ────────────────────── */
-function startCountdown() {
-  clearInterval(countdownInt);
-  countdownVal = 30;
-  cntBar.style.width = '100%';
-  countdownInt = setInterval(() => {
-    countdownVal = Math.max(0, countdownVal - 1);
-    cntBar.style.width = ((countdownVal / 30) * 100) + '%';
-  }, 1000);
-}
-
 /* ─── FETCH ────────────────────────── */
 async function loadData() {
-  setSyncing(true);
   try {
     const res  = await fetch(`date.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -859,19 +823,13 @@ async function loadData() {
     renderAll(json);
     const now = new Date();
     lastSyncEl.textContent = `Synced ${now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
-    setSyncing(false);
-    startCountdown();
   } catch(err) {
     console.error(err);
     renderError(err.message);
-    liveLabelEl.textContent     = 'Error';
-    liveDotEl.style.background  = 'var(--magenta)';
-    liveDotEl.style.boxShadow   = '0 0 8px var(--magenta)';
   }
 }
 
 loadData();
-setInterval(loadData, 30000);
 
 /* Re-render on resize so char counts update */
 let resizeTimer;
