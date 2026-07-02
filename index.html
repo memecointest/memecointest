@@ -9,13 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 
-/* ════════════════════════════════════════════
-   TOKENS
-════════════════════════════════════════════ */
 :root {
   --void:        #06001A;
   --deep:        #0D0029;
-  --panel:       #110033;
   --violet:      #7B2FFF;
   --violet-dim:  #3D1880;
   --cyan:        #00FFD1;
@@ -25,15 +21,11 @@
   --white-warm:  #F0EBE3;
   --muted:       #5A4E7A;
   --muted-light: #8A7BA8;
-
   --font-display: 'Orbitron', sans-serif;
   --font-body:    'Space Grotesk', sans-serif;
   --font-mono:    'Courier New', monospace;
 }
 
-/* ════════════════════════════════════════════
-   RESET
-════════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -46,23 +38,14 @@ body {
   overflow-x: hidden;
 }
 
-/* ════════════════════════════════════════════
-   BACKGROUND
-════════════════════════════════════════════ */
+/* ── BACKGROUND ─────────────────────────────── */
 .bg-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
 }
-
 .bg-grid {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 200%;
-  height: 70%;
+  position: absolute; bottom: 0; left: 50%;
+  width: 200%; height: 70%;
   background-image:
     linear-gradient(rgba(123,47,255,0.18) 1px, transparent 1px),
     linear-gradient(90deg, rgba(123,47,255,0.18) 1px, transparent 1px);
@@ -72,64 +55,39 @@ body {
   mask-image: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
   -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
 }
-
 .bg-blob {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.22;
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.22;
 }
-.bg-blob-1 { width:600px; height:600px; background:var(--violet); top:-200px; left:-150px; }
-.bg-blob-2 { width:500px; height:500px; background:var(--cyan);   top:100px;  right:-200px; opacity:0.12; }
-.bg-blob-3 { width:400px; height:400px; background:var(--magenta);bottom:100px;left:30%;    opacity:0.1; }
-
+.bg-blob-1 { width:600px;height:600px;background:var(--violet);top:-200px;left:-150px; }
+.bg-blob-2 { width:500px;height:500px;background:var(--cyan);top:100px;right:-200px;opacity:0.12; }
+.bg-blob-3 { width:400px;height:400px;background:var(--magenta);bottom:100px;left:30%;opacity:0.1; }
 .bg-scanlines {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.08) 2px,
-    rgba(0,0,0,0.08) 4px
-  );
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.08) 2px,rgba(0,0,0,0.08) 4px);
 }
 
-/* ════════════════════════════════════════════
-   PAGE WRAP
-════════════════════════════════════════════ */
+/* ── PAGE ───────────────────────────────────── */
 .page {
-  position: relative;
-  z-index: 1;
-  max-width: 1140px;
-  margin: 0 auto;
+  position: relative; z-index: 1;
+  max-width: 1140px; margin: 0 auto;
   padding: 0 20px 60px;
 }
 
-/* ════════════════════════════════════════════
-   HEADER — compact, no subtitle
-════════════════════════════════════════════ */
-.header {
-  padding: 44px 0 36px;
-}
+/* ── HEADER ─────────────────────────────────── */
+.header { padding: 44px 0 36px; }
 
 .brand-eyebrow {
   font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted-light);
+  font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted-light);
   margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
 }
-
-/* $ sign — gold 2.5D */
 .dollar-sign {
   font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 900;
+  font-size: 22px; font-weight: 900;
   color: var(--gold);
   text-shadow:
     1px 1px 0 var(--gold-dim),
@@ -137,36 +95,21 @@ body {
     3px 3px 0 rgba(168,137,63,0.4),
     4px 4px 0 rgba(168,137,63,0.2),
     0 0 20px rgba(255,209,102,0.5);
-  line-height: 1;
-  display: inline-block;
+  line-height: 1; display: inline-block;
 }
-
 .eyebrow-name {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  color: var(--gold);
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.22em; color: var(--gold);
   text-shadow: 0 0 12px rgba(255,209,102,0.4);
 }
-
-.eyebrow-sep {
-  color: var(--muted);
-  margin: 0 4px;
-}
-
-.eyebrow-detail {
-  color: var(--muted-light);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-}
+.eyebrow-sep { color: var(--muted); margin: 0 2px; }
+.eyebrow-detail { color: var(--muted-light); font-size: 10px; letter-spacing: 0.18em; }
 
 .brand-title {
   font-family: var(--font-display);
   font-size: clamp(36px, 6vw, 76px);
-  font-weight: 900;
-  line-height: 0.88;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-weight: 900; line-height: 0.88;
+  letter-spacing: -0.02em; text-transform: uppercase;
   text-shadow:
     1px 1px 0 var(--violet-dim),
     2px 2px 0 var(--violet-dim),
@@ -175,38 +118,27 @@ body {
     5px 5px 0 rgba(123,47,255,0.15),
     0 0 40px rgba(123,47,255,0.5);
 }
-
 .brand-title .accent  { color: var(--cyan); }
 .brand-title .accent2 { color: var(--magenta); }
 
-/* ════════════════════════════════════════════
-   DIVIDER
-════════════════════════════════════════════ */
+/* ── DIVIDER ─────────────────────────────────── */
 .divider {
   height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    var(--violet-dim) 20%,
-    var(--violet) 50%,
-    var(--violet-dim) 80%,
-    transparent 100%
-  );
-  margin-bottom: 36px;
-  position: relative;
+  background: linear-gradient(90deg,transparent 0%,var(--violet-dim) 20%,var(--violet) 50%,var(--violet-dim) 80%,transparent 100%);
+  margin-bottom: 36px; position: relative;
 }
 .divider::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 50%;
-  transform: translateX(-50%);
+  content: ''; position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
   width: 60px; height: 1px;
-  background: var(--cyan);
-  box-shadow: 0 0 12px var(--cyan);
+  background: var(--cyan); box-shadow: 0 0 12px var(--cyan);
 }
 
-/* ════════════════════════════════════════════
-   PODIUM — top 3 cards
-════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   PODIUM — top 3
+   On mobile: single column, full width
+   On desktop: 3 columns
+══════════════════════════════════════════════ */
 .podium {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -215,84 +147,52 @@ body {
   perspective: 1000px;
 }
 
+@media (max-width: 860px) {
+  .podium { grid-template-columns: 1fr; gap: 14px; }
+}
+
 .podium-card {
   position: relative;
-  padding: 22px 18px 20px;
+  padding: 22px 20px 20px;
   border-radius: 4px;
   transition: transform 0.3s ease;
   transform-style: preserve-3d;
-  min-width: 0; /* allow shrink */
+  min-width: 0;
 }
-.podium-card:hover {
-  transform: translateY(-5px) rotateX(3deg);
-}
+.podium-card:hover { transform: translateY(-5px) rotateX(3deg); }
 
 .podium-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 4px;
-  border: 1px solid;
-  z-index: 0;
-  pointer-events: none;
+  content: ''; position: absolute; inset: 0;
+  border-radius: 4px; border: 1px solid;
+  z-index: 0; pointer-events: none;
 }
 .podium-card::after {
-  content: '';
-  position: absolute;
-  top: 10px; left: 10px;
-  right: -10px; bottom: -10px;
-  border-radius: 4px;
-  z-index: -1;
+  content: ''; position: absolute;
+  top: 10px; left: 10px; right: -10px; bottom: -10px;
+  border-radius: 4px; z-index: -1;
 }
 
-/* Card colours */
-.podium-card-1 {
-  background: linear-gradient(145deg, rgba(255,209,102,0.13) 0%, rgba(255,209,102,0.04) 100%);
-}
-.podium-card-1::before {
-  border-color: rgba(255,209,102,0.5);
-  box-shadow: 0 0 28px rgba(255,209,102,0.14), 0 18px 36px rgba(0,0,0,0.45);
-}
-.podium-card-1::after {
-  background: rgba(255,209,102,0.08);
-  border: 1px solid rgba(255,209,102,0.18);
-}
+/* Card 1 — Gold */
+.podium-card-1 { background: linear-gradient(145deg,rgba(255,209,102,0.13) 0%,rgba(255,209,102,0.04) 100%); }
+.podium-card-1::before { border-color:rgba(255,209,102,0.5); box-shadow:0 0 28px rgba(255,209,102,0.14),0 18px 36px rgba(0,0,0,0.45); }
+.podium-card-1::after  { background:rgba(255,209,102,0.08); border:1px solid rgba(255,209,102,0.18); }
 
-.podium-card-2 {
-  background: linear-gradient(145deg, rgba(123,47,255,0.18) 0%, rgba(123,47,255,0.06) 100%);
-}
-.podium-card-2::before {
-  border-color: rgba(123,47,255,0.6);
-  box-shadow: 0 0 28px rgba(123,47,255,0.2), 0 18px 36px rgba(0,0,0,0.45);
-}
-.podium-card-2::after {
-  background: rgba(123,47,255,0.1);
-  border: 1px solid rgba(123,47,255,0.24);
-}
+/* Card 2 — Violet */
+.podium-card-2 { background: linear-gradient(145deg,rgba(123,47,255,0.18) 0%,rgba(123,47,255,0.06) 100%); }
+.podium-card-2::before { border-color:rgba(123,47,255,0.6); box-shadow:0 0 28px rgba(123,47,255,0.2),0 18px 36px rgba(0,0,0,0.45); }
+.podium-card-2::after  { background:rgba(123,47,255,0.1); border:1px solid rgba(123,47,255,0.24); }
 
-.podium-card-3 {
-  background: linear-gradient(145deg, rgba(0,255,209,0.10) 0%, rgba(0,255,209,0.03) 100%);
-}
-.podium-card-3::before {
-  border-color: rgba(0,255,209,0.4);
-  box-shadow: 0 0 28px rgba(0,255,209,0.1), 0 18px 36px rgba(0,0,0,0.45);
-}
-.podium-card-3::after {
-  background: rgba(0,255,209,0.06);
-  border: 1px solid rgba(0,255,209,0.16);
-}
+/* Card 3 — Cyan */
+.podium-card-3 { background: linear-gradient(145deg,rgba(0,255,209,0.10) 0%,rgba(0,255,209,0.03) 100%); }
+.podium-card-3::before { border-color:rgba(0,255,209,0.4); box-shadow:0 0 28px rgba(0,255,209,0.1),0 18px 36px rgba(0,0,0,0.45); }
+.podium-card-3::after  { background:rgba(0,255,209,0.06); border:1px solid rgba(0,255,209,0.16); }
 
-.podium-inner {
-  position: relative;
-  z-index: 1;
-}
+.podium-inner { position: relative; z-index: 1; }
 
 .podium-rank-label {
   font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  margin-bottom: 6px;
+  font-size: 9px; letter-spacing: 0.26em;
+  text-transform: uppercase; margin-bottom: 6px;
 }
 .podium-card-1 .podium-rank-label { color: var(--gold); }
 .podium-card-2 .podium-rank-label { color: #a07aff; }
@@ -301,182 +201,174 @@ body {
 .podium-rank-num {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(40px, 4.5vw, 68px);
-  line-height: 0.85;
-  margin-bottom: 14px;
-  display: block;
+  font-size: clamp(40px, 5vw, 68px);
+  line-height: 0.85; margin-bottom: 16px; display: block;
 }
 .podium-card-1 .podium-rank-num {
   color: var(--gold);
-  text-shadow: 0 0 20px rgba(255,209,102,0.6), 2px 2px 0 rgba(255,209,102,0.3);
+  text-shadow:
+    1px 1px 0 var(--gold-dim),
+    2px 2px 0 rgba(168,137,63,0.7),
+    3px 3px 0 rgba(168,137,63,0.4),
+    0 0 24px rgba(255,209,102,0.7),
+    0 0 48px rgba(255,209,102,0.3);
 }
 .podium-card-2 .podium-rank-num {
-  color: var(--violet);
-  text-shadow: 0 0 20px rgba(123,47,255,0.9), 2px 2px 0 rgba(123,47,255,0.4);
-  filter: brightness(1.6);
+  color: #a07aff;
+  text-shadow:
+    1px 1px 0 #3D1880,
+    2px 2px 0 rgba(61,24,128,0.7),
+    3px 3px 0 rgba(61,24,128,0.4),
+    0 0 24px rgba(123,47,255,0.9),
+    0 0 48px rgba(123,47,255,0.4);
 }
 .podium-card-3 .podium-rank-num {
   color: var(--cyan);
-  text-shadow: 0 0 20px rgba(0,255,209,0.6), 2px 2px 0 rgba(0,255,209,0.3);
+  text-shadow:
+    1px 1px 0 #008c72,
+    2px 2px 0 rgba(0,140,114,0.7),
+    3px 3px 0 rgba(0,140,114,0.4),
+    0 0 24px rgba(0,255,209,0.7),
+    0 0 48px rgba(0,255,209,0.3);
 }
 
-/* Addresses block — both visible */
+/* ── PODIUM ADDRESSES ───────────────────────── */
+/* Two addresses side by side, full width of card */
 .podium-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
   margin-bottom: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  min-width: 0;
 }
 
 .addr-row {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
+  display: flex; flex-direction: column;
+  gap: 2px; min-width: 0; overflow: hidden;
 }
 
 .addr-field-label {
   font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-size: 7.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted);
 }
 
+/* Colored address text per card */
 .copy-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--muted-light);
-  letter-spacing: 0.03em;
+  background: none; border: none; cursor: pointer;
+  padding: 0; font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.03em;
   text-align: left;
-  transition: color 0.15s;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
-  display: block;
-  width: 100%;
+  transition: color 0.15s, text-shadow 0.15s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%; display: block; width: 100%;
 }
-.copy-btn:hover, .copy-btn:focus { color: var(--cyan); outline: none; }
+.copy-btn:focus { outline: none; }
 .copy-btn:focus-visible { outline: 1px solid var(--cyan); outline-offset: 2px; }
-.copy-btn.copied { color: var(--cyan) !important; }
+.copy-btn.copied { opacity: 0.8; }
+
+/* Per-card address colour + 2.5D */
+.podium-card-1 .copy-btn {
+  color: var(--gold);
+  text-shadow: 0 0 8px rgba(255,209,102,0.4), 1px 1px 0 var(--gold-dim);
+}
+.podium-card-1 .copy-btn:hover { text-shadow: 0 0 14px rgba(255,209,102,0.7), 1px 1px 0 var(--gold-dim); }
+
+.podium-card-2 .copy-btn {
+  color: #a07aff;
+  text-shadow: 0 0 8px rgba(123,47,255,0.5), 1px 1px 0 #3D1880;
+}
+.podium-card-2 .copy-btn:hover { text-shadow: 0 0 14px rgba(123,47,255,0.8), 1px 1px 0 #3D1880; }
+
+.podium-card-3 .copy-btn {
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0,255,209,0.4), 1px 1px 0 #008c72;
+}
+.podium-card-3 .copy-btn:hover { text-shadow: 0 0 14px rgba(0,255,209,0.7), 1px 1px 0 #008c72; }
+
+/* Copied state */
+.copy-btn.copied { opacity: 0.7 !important; }
 
 .podium-quantity {
   font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--white-warm);
-  letter-spacing: 0.05em;
+  font-size: 13px; font-weight: 700;
+  color: var(--white-warm); letter-spacing: 0.04em;
   margin-bottom: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 
 .podium-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
   padding-top: 12px;
   border-top: 1px solid rgba(255,255,255,0.06);
   gap: 6px;
-  flex-wrap: wrap;
 }
-
-.podium-pct {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+.podium-pct { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; }
+.podium-card-1 .podium-pct {
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(255,209,102,0.5), 1px 1px 0 var(--gold-dim);
 }
-.podium-card-1 .podium-pct { color: var(--gold); }
-.podium-card-2 .podium-pct { color: #a07aff; }
-.podium-card-3 .podium-pct { color: var(--cyan); }
-
-.podium-value {
-  font-size: 11px;
-  color: var(--muted-light);
-  font-weight: 300;
+.podium-card-2 .podium-pct {
+  color: #a07aff;
+  text-shadow: 0 0 12px rgba(123,47,255,0.6), 1px 1px 0 #3D1880;
 }
+.podium-card-3 .podium-pct {
+  color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0,255,209,0.5), 1px 1px 0 #008c72;
+}
+.podium-value { font-size: 12px; color: var(--muted-light); font-weight: 300; }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════════════
    TABLE SECTION
-════════════════════════════════════════════ */
+══════════════════════════════════════════════ */
 .section-head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
 }
 .section-label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.26em; text-transform: uppercase;
   color: var(--muted-light);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  white-space: nowrap;
+  display: flex; align-items: center; gap: 10px; white-space: nowrap;
 }
 .section-label::before {
-  content: '';
-  display: inline-block;
+  content: ''; display: inline-block;
   width: 14px; height: 1px;
-  background: var(--violet);
-  box-shadow: 0 0 6px var(--violet);
+  background: var(--violet); box-shadow: 0 0 6px var(--violet);
 }
 
-/* ════════════════════════════════════════════
-   TABLE PANEL
-════════════════════════════════════════════ */
+/* Table panel */
 .table-panel {
-  position: relative;
-  border-radius: 6px 6px 4px 4px;
-  overflow: hidden;
-  margin-bottom: 28px;
+  position: relative; border-radius: 6px 6px 4px 4px;
+  overflow: hidden; margin-bottom: 28px;
 }
 .table-panel::before {
-  content: '';
-  position: absolute;
+  content: ''; position: absolute;
   top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg,
-    transparent 0%, var(--violet) 30%, var(--cyan) 50%, var(--violet) 70%, transparent 100%);
+  background: linear-gradient(90deg,transparent 0%,var(--violet) 30%,var(--cyan) 50%,var(--violet) 70%,transparent 100%);
   z-index: 3;
 }
 .table-panel::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 6px;
+  content: ''; position: absolute; inset: 0; border-radius: 6px;
   box-shadow:
     0 1px 0 rgba(123,47,255,0.4) inset,
     8px 8px 0 rgba(123,47,255,0.06),
     16px 16px 0 rgba(123,47,255,0.03),
     0 32px 64px rgba(0,0,0,0.5),
     0 0 0 1px rgba(123,47,255,0.2);
-  pointer-events: none;
-  z-index: 2;
+  pointer-events: none; z-index: 2;
 }
 
 .table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
   background: rgba(13,0,41,0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 
-/* ════════════════════════════════════════════
-   TABLE
-════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   TABLE CORE
+══════════════════════════════════════════════ */
 #holders-table {
-  width: 100%;
-  border-collapse: collapse;
-  /* No fixed min-width — let JS / media queries decide */
+  width: 100%; border-collapse: collapse;
 }
 
 #holders-table thead tr {
@@ -484,15 +376,11 @@ body {
   border-bottom: 1px solid rgba(123,47,255,0.3);
 }
 #holders-table thead th {
-  padding: 13px 10px;
-  font-family: var(--font-mono);
-  font-size: 8px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted-light);
-  font-weight: 400;
-  white-space: nowrap;
-  text-align: left;
+  padding: 12px 10px;
+  font-family: var(--font-mono); font-size: 8px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted-light); font-weight: 400;
+  white-space: nowrap; text-align: left;
 }
 #holders-table thead th.th-r { text-align: right; }
 
@@ -505,79 +393,68 @@ body {
 #holders-table tbody tr:nth-child(odd):hover { background: rgba(123,47,255,0.09); }
 
 #holders-table tbody td {
-  padding: 10px 10px;
-  font-size: 12px;
-  vertical-align: middle;
+  padding: 10px 10px; font-size: 12px; vertical-align: middle;
 }
 
 /* Rank */
 .td-rank {
-  text-align: right;
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  white-space: nowrap;
-  padding-right: 14px !important;
-  width: 42px;
+  text-align: right; padding-right: 14px !important;
+  font-family: var(--font-display); font-size: 13px;
+  font-weight: 700; color: var(--muted);
+  white-space: nowrap; width: 40px;
 }
 
-/* Addr cells */
-.td-addr {
-  min-width: 0;
-}
-.td-addr-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  min-width: 0;
-}
-.addr-sub-label {
-  font-family: var(--font-mono);
-  font-size: 7.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1px;
-}
+/* Address cells — plain inline, never stacked */
+.td-addr { min-width: 0; }
 
-/* Combined wallet + token in one cell for tight layouts */
-.td-addr-combined {
-  min-width: 0;
+/* copy-btn in table — neutral colour */
+.table-copy-btn {
+  background: none; border: none; cursor: pointer;
+  padding: 0; font-family: var(--font-mono);
+  font-size: 11px; color: var(--muted-light);
+  letter-spacing: 0.03em; text-align: left;
+  transition: color 0.15s;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 100%; display: block; width: 100%;
 }
-.combined-inner {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 0;
-}
-.combined-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  min-width: 0;
-}
-
-/* Number cells */
-.td-num {
-  text-align: right;
-  font-weight: 500;
-  font-size: 11px;
-  color: var(--white-warm);
-  white-space: nowrap;
-}
+.table-copy-btn:hover, .table-copy-btn:focus { color: var(--cyan); outline: none; }
+.table-copy-btn:focus-visible { outline: 1px solid var(--cyan); outline-offset: 2px; }
+.table-copy-btn.copied { color: var(--cyan) !important; }
 
 /* Pct */
 .td-pct { text-align: right; white-space: nowrap; }
 .pct-wrap { display:flex; flex-direction:column; align-items:flex-end; gap:4px; }
 .pct-num  { font-size:11px; font-weight:600; color:var(--cyan); }
-.pct-track { width:40px; height:2px; background:rgba(255,255,255,0.06); border-radius:1px; overflow:hidden; }
+.pct-track { width:36px; height:2px; background:rgba(255,255,255,0.06); border-radius:1px; overflow:hidden; }
 .pct-fill  { height:100%; border-radius:1px; background:linear-gradient(90deg,var(--violet),var(--cyan)); transition:width 0.5s ease; box-shadow:0 0 4px var(--cyan); }
 
 /* Value */
 .td-value { text-align:right; font-weight:500; color:var(--muted-light); font-size:11px; white-space:nowrap; }
 
-/* Flash + glitch */
+/* ══════════════════════════════════════════════
+   RESPONSIVE TABLE BREAKPOINTS
+
+   ≥ 680px  — 5 cols: # | Wallet | Token Acc | Share | Value
+   < 680px  — 4 cols: # | Wallet | Token Acc | Share
+              (value hidden, addresses shorter)
+
+   We NEVER stack addresses — each stays in its own column.
+   Balance/Quantity column removed per user request (replaced by Value).
+══════════════════════════════════════════════ */
+
+/* Value column hidden on very small screens */
+.col-value { display: table-cell; }
+
+@media (max-width: 479px) {
+  .col-value { display: none; }
+  #holders-table thead th,
+  #holders-table tbody td { padding: 9px 7px; font-size: 11px; }
+  .td-rank { font-size: 11px; width: 30px; padding-right: 8px !important; }
+  .table-copy-btn { font-size: 10px; }
+  .pct-track { width: 24px; }
+}
+
+/* ── FLASH & GLITCH ─────────────────────────── */
 @keyframes row-flash {
   0%   { background: rgba(0,255,209,0.12); }
   100% { background: transparent; }
@@ -593,173 +470,62 @@ body {
 }
 .cell-glitch { animation: glitch 0.35s steps(1) forwards; }
 
-/* ════════════════════════════════════════════
-   STATUS BAR — moved below table
-════════════════════════════════════════════ */
+/* ── STATUS BAR ─────────────────────────────── */
 .status-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 0 4px;
-  margin-bottom: 0;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 12px; padding: 0 4px;
 }
-
 .live-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  display: inline-flex; align-items: center; gap: 8px;
   border: 1px solid rgba(0,255,209,0.3);
   background: rgba(0,255,209,0.06);
-  border-radius: 100px;
-  padding: 7px 16px 7px 11px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  border-radius: 100px; padding: 7px 16px 7px 11px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
 .live-dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--cyan);
-  box-shadow: 0 0 8px var(--cyan);
-  flex-shrink: 0;
-  animation: live-pulse 2s ease-in-out infinite;
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
+  flex-shrink: 0; animation: live-pulse 2s ease-in-out infinite;
 }
 @keyframes live-pulse {
   0%,100% { transform:scale(1);   box-shadow:0 0 8px var(--cyan); }
-  50%      { transform:scale(1.3); box-shadow:0 0 16px var(--cyan), 0 0 24px rgba(0,255,209,0.4); }
+  50%      { transform:scale(1.3); box-shadow:0 0 16px var(--cyan),0 0 24px rgba(0,255,209,0.4); }
 }
 .live-text {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--cyan);
+  font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--cyan);
 }
+.last-sync { font-size:10px; font-family:var(--font-mono); color:var(--muted); letter-spacing:0.08em; }
 
-.last-sync {
-  font-size: 10px;
-  font-family: var(--font-mono);
-  color: var(--muted);
-  letter-spacing: 0.08em;
-}
-
-/* ════════════════════════════════════════════
-   LOADING / ERROR
-════════════════════════════════════════════ */
-.loading {
-  padding: 70px 20px;
-  text-align: center;
-}
+/* ── LOADING / ERROR ────────────────────────── */
+.loading { padding:70px 20px; text-align:center; }
 .loading-icon {
-  font-family: var(--font-display);
-  font-size: 54px;
-  font-weight: 900;
-  color: var(--violet);
-  text-shadow: 0 0 30px var(--violet);
-  animation: loading-pulse 1.4s ease-in-out infinite;
-  display: block;
-  margin-bottom: 18px;
+  font-family:var(--font-display); font-size:54px; font-weight:900;
+  color:var(--violet); text-shadow:0 0 30px var(--violet);
+  animation:loading-pulse 1.4s ease-in-out infinite;
+  display:block; margin-bottom:18px;
 }
 @keyframes loading-pulse {
-  0%,100% { opacity:0.3; transform:scale(0.95); }
-  50%      { opacity:1;   transform:scale(1.05); }
+  0%,100%{opacity:0.3;transform:scale(0.95);}
+  50%{opacity:1;transform:scale(1.05);}
 }
-.loading-text {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--muted-light);
-}
+.loading-text { font-family:var(--font-mono); font-size:10px; letter-spacing:0.26em; text-transform:uppercase; color:var(--muted-light); }
+.error-block{padding:60px 20px;text-align:center;}
+.error-code{font-family:var(--font-display);font-size:44px;font-weight:900;color:var(--magenta);text-shadow:0 0 20px rgba(255,60,172,0.5);display:block;margin-bottom:12px;}
+.error-text{font-size:13px;color:var(--muted-light);letter-spacing:0.05em;}
+.error-detail{display:block;margin-top:8px;font-family:var(--font-mono);font-size:10px;color:rgba(255,60,172,0.6);}
 
-.error-block { padding:60px 20px; text-align:center; }
-.error-code  {
-  font-family: var(--font-display);
-  font-size: 44px; font-weight:900;
-  color: var(--magenta);
-  text-shadow: 0 0 20px rgba(255,60,172,0.5);
-  display: block; margin-bottom: 12px;
-}
-.error-text   { font-size:13px; color:var(--muted-light); letter-spacing:0.05em; }
-.error-detail {
-  display:block; margin-top:8px;
-  font-family:var(--font-mono); font-size:10px;
-  color:rgba(255,60,172,0.6);
-}
+/* ── COUNTDOWN ──────────────────────────────── */
+.countdown-wrap { position:fixed; bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.04);z-index:100; }
+.countdown-bar  { height:100%;background:linear-gradient(90deg,var(--violet),var(--cyan));box-shadow:0 0 8px var(--cyan);transition:width 1s linear; }
 
-/* ════════════════════════════════════════════
-   COUNTDOWN BAR
-════════════════════════════════════════════ */
-.countdown-wrap {
-  position: fixed;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: rgba(255,255,255,0.04);
-  z-index: 100;
-}
-.countdown-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--violet), var(--cyan));
-  box-shadow: 0 0 8px var(--cyan);
-  transition: width 1s linear;
-}
-
-/* ════════════════════════════════════════════
-   RESPONSIVE STRATEGY
-
-   ≥ 900px  → rank | wallet | token-acc | balance | % | value   (6 cols)
-   600–899px→ rank | wallet+token combined | balance | % | value  (5 cols)
-   < 600px  → rank | wallet+token combined | % | value           (4 cols, no balance)
-════════════════════════════════════════════ */
-
-/* Default: separate columns for wallet and token account */
-.col-token-sep { display: table-cell; }
-.col-combined  { display: none; }
-.col-balance   { display: table-cell; }
-
-/* 600–899px: merge wallet+token into one column, keep balance */
-@media (max-width: 899px) and (min-width: 600px) {
-  .col-token-sep { display: none; }
-  .col-combined  { display: table-cell; }
-  .col-balance   { display: table-cell; }
-  #holders-table { min-width: 420px; }
-}
-
-/* <600px: merge wallet+token, drop balance */
-@media (max-width: 599px) {
-  .col-token-sep { display: none; }
-  .col-combined  { display: table-cell; }
-  .col-balance   { display: none; }
-  #holders-table { min-width: 320px; }
-  .pct-track     { width: 28px; }
-  .td-rank       { width: 32px; font-size: 11px; }
-}
-
-/* Podium responsive */
-@media (max-width: 860px) {
-  .podium { grid-template-columns: 1fr; gap: 14px; }
-  .podium-rank-num { font-size: 44px; }
-  .copy-btn { font-size: 12px; }
-}
-
-@media (max-width: 480px) {
-  .page { padding: 0 14px 60px; }
-  .brand-title { font-size: clamp(30px, 9vw, 44px); }
-  .header { padding: 32px 0 28px; }
-}
-
-/* ════════════════════════════════════════════
-   REDUCED MOTION
-════════════════════════════════════════════ */
+/* ── REDUCED MOTION ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .live-dot    { animation: none !important; }
-  .loading-icon{ animation: none !important; opacity: 0.6; }
-  .row-flash   { animation: none !important; }
-  .cell-glitch { animation: none !important; }
-  .pct-fill    { transition: none !important; }
-  .podium-card { transition: none !important; }
-  .countdown-bar{ transition: none !important; }
+  .live-dot,.loading-icon { animation:none!important; }
+  .row-flash,.cell-glitch { animation:none!important; }
+  .pct-fill,.countdown-bar { transition:none!important; }
+  .podium-card { transition:none!important; }
 }
 
 </style>
@@ -780,7 +546,6 @@ body {
 
 <div class="page">
 
-  <!-- HEADER -->
   <header class="header">
     <p class="brand-eyebrow">
       <span class="dollar-sign">$</span>
@@ -796,10 +561,10 @@ body {
 
   <div class="divider" aria-hidden="true"></div>
 
-  <!-- TOP 3 PODIUM -->
+  <!-- TOP 3 -->
   <div class="podium" id="podium" aria-label="Top 3 holders"></div>
 
-  <!-- TABLE 4–50 -->
+  <!-- TABLE 4-50 -->
   <div class="section-head">
     <span class="section-label">Positions 4 — 50</span>
   </div>
@@ -815,7 +580,7 @@ body {
     </div>
   </div>
 
-  <!-- STATUS — below table -->
+  <!-- STATUS below table -->
   <div class="status-bar">
     <div class="live-pill">
       <span class="live-dot" id="live-dot"></span>
@@ -824,41 +589,39 @@ body {
     <span class="last-sync" id="last-sync">—</span>
   </div>
 
-</div><!-- /page -->
+</div>
 
 <script>
-/* ─── ELEMENTS ──────────────────────────────────── */
+/* ─── ELEMENTS ─────────────────────── */
 const podiumEl    = document.getElementById('podium');
 const tableEl     = document.getElementById('table-container');
 const lastSyncEl  = document.getElementById('last-sync');
 const liveLabelEl = document.getElementById('live-label');
 const liveDotEl   = document.getElementById('live-dot');
-const countdownBar= document.getElementById('countdown-bar');
+const cntBar      = document.getElementById('countdown-bar');
 
-/* ─── STATE ─────────────────────────────────────── */
 let prevData     = null;
 let countdownInt = null;
 let countdownVal = 30;
 
-/* ─── HELPERS ───────────────────────────────────── */
+/* ─── HELPERS ──────────────────────── */
 function esc(t) {
   return String(t).replace(/[&<>"']/g, c =>
     ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])
   );
 }
 
-/* Smart shorten: tries to fit more chars on wider screens */
+/* Shorten address — adaptive to viewport */
 function shorten(addr, head, tail) {
   if (!addr) return '';
-  head = head || 6;
-  tail = tail || 6;
+  head = head || 5; tail = tail || 5;
   if (addr.length <= head + tail + 3) return addr;
   return addr.slice(0, head) + '…' + addr.slice(-tail);
 }
 
 function fmtQ(n) {
   if (typeof n !== 'number') return esc(String(n));
-  return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 4 });
+  return n.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:4});
 }
 function fmtP(n) {
   if (typeof n !== 'number') return esc(String(n));
@@ -866,10 +629,10 @@ function fmtP(n) {
 }
 function fmtV(n) {
   if (typeof n !== 'number') return esc(String(n));
-  return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return n.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
 }
 
-/* ─── COPY ──────────────────────────────────────── */
+/* ─── COPY ─────────────────────────── */
 async function copyAddr(btn, full) {
   try {
     await navigator.clipboard.writeText(full);
@@ -880,21 +643,21 @@ async function copyAddr(btn, full) {
   } catch(_) {}
 }
 
-function makeCopyBtn(addr, headChars, tailChars) {
+/* Generic copy button factory */
+function makeCopyBtn(addr, head, tail, extraClass) {
   const btn = document.createElement('button');
-  btn.className = 'copy-btn';
-  btn.textContent = shorten(addr, headChars, tailChars);
+  btn.className = (extraClass || 'copy-btn');
+  btn.textContent = shorten(addr, head, tail);
   btn.title = addr;
-  btn.setAttribute('aria-label', `Copy address: ${addr}`);
+  btn.setAttribute('aria-label', 'Copy: ' + addr);
   btn.addEventListener('click', () => copyAddr(btn, addr));
   return btn;
 }
 
-/* ─── UTILS ─────────────────────────────────────── */
+/* ─── DATA UTILS ───────────────────── */
 function getMaxPct(data) {
   return data.reduce((m, r) => (typeof r['%'] === 'number' && r['%'] > m ? r['%'] : m), 0) || 1;
 }
-
 function buildPrevMap(data) {
   const m = {};
   if (!data) return m;
@@ -905,7 +668,7 @@ function buildPrevMap(data) {
   return m;
 }
 
-/* ─── PODIUM ────────────────────────────────────── */
+/* ─── PODIUM ───────────────────────── */
 function renderPodium(top3) {
   podiumEl.innerHTML = '';
   const labels  = ['🥇 First', '🥈 Second', '🥉 Third'];
@@ -915,19 +678,23 @@ function renderPodium(top3) {
     const rank     = row['Rank'] ?? (i + 1);
     const owner    = row['Account (Owner)'] || '';
     const tokenAcc = row['Token Account']   || '';
-    const qty      = fmtQ(row['Quantity']);
     const pct      = fmtP(row['%']);
     const val      = fmtV(row['Value']);
+
+    /* How many chars to show — wider on desktop, narrower on mobile */
+    const w = window.innerWidth;
+    const addrHead = w < 400 ? 6 : w < 680 ? 8 : 10;
+    const addrTail = addrHead;
 
     const card = document.createElement('div');
     card.className = `podium-card ${classes[i]}`;
 
-    /* Inner HTML structure */
+    /* Skeleton */
     card.innerHTML = `
       <div class="podium-inner">
         <p class="podium-rank-label">${esc(labels[i])}</p>
         <span class="podium-rank-num">${rank}</span>
-        <div class="podium-addresses">
+        <div class="podium-addresses" id="addrs-${i}">
           <div class="addr-row">
             <span class="addr-field-label">Wallet</span>
           </div>
@@ -935,51 +702,51 @@ function renderPodium(top3) {
             <span class="addr-field-label">Token Acc</span>
           </div>
         </div>
-        <p class="podium-quantity">${qty} tokens</p>
+        <p class="podium-quantity">${fmtQ(row['Quantity'])} tokens</p>
         <div class="podium-meta">
           <span class="podium-pct">${pct}%</span>
           <span class="podium-value">$${esc(val)}</span>
         </div>
       </div>`;
 
-    /* Insert copy buttons after labels */
-    const addrRows = card.querySelectorAll('.addr-row');
-
-    /* Wallet btn — show more chars, wallet is the glory */
-    const walletBtn = makeCopyBtn(owner, 8, 8);
-    addrRows[0].appendChild(walletBtn);
-
-    /* Token acc btn */
-    const tokenBtn = makeCopyBtn(tokenAcc, 8, 8);
-    addrRows[1].appendChild(tokenBtn);
+    /* Inject copy buttons */
+    const rows = card.querySelectorAll('.addr-row');
+    rows[0].appendChild(makeCopyBtn(owner,    addrHead, addrTail, 'copy-btn'));
+    rows[1].appendChild(makeCopyBtn(tokenAcc, addrHead, addrTail, 'copy-btn'));
 
     podiumEl.appendChild(card);
   });
 }
 
-/* ─── TABLE ─────────────────────────────────────── */
+/* ─── TABLE 4-50 ───────────────────── */
 function renderTable(rest, prevMap, maxPct) {
   if (rest.length === 0) { tableEl.innerHTML = ''; return; }
+
+  /* Decide char counts based on viewport */
+  const vw = window.innerWidth;
+  /* 
+     ≥ 680px : 5 cols → wallet | token-acc each get their own column
+     < 680px : still 5 cols but tighter chars, value hidden via CSS
+  */
+  const headChars = vw < 380 ? 4 : vw < 480 ? 5 : vw < 680 ? 6 : 8;
+  const tailChars = headChars;
 
   const table = document.createElement('table');
   table.id = 'holders-table';
 
-  /* thead — three header variants controlled by CSS classes */
   table.innerHTML = `
     <thead>
       <tr>
         <th class="th-r">#</th>
-        <th class="col-token-sep">Wallet</th>
-        <th class="col-token-sep">Token Account</th>
-        <th class="col-combined">Wallet · Token Account</th>
-        <th class="th-r col-balance">Balance</th>
+        <th>Wallet</th>
+        <th>Token Acc</th>
         <th class="th-r">Share</th>
-        <th class="th-r">Value</th>
+        <th class="th-r col-value">Value</th>
       </tr>
     </thead>
-    <tbody id="tbody-inner"></tbody>`;
+    <tbody id="tbody-rows"></tbody>`;
 
-  const tbody = table.querySelector('#tbody-inner');
+  const tbody = table.querySelector('#tbody-rows');
 
   rest.forEach((row, idx) => {
     const rank     = row['Rank'] ?? (idx + 4);
@@ -987,77 +754,47 @@ function renderTable(rest, prevMap, maxPct) {
     const tokenAcc = row['Token Account']   || '';
     const pctRaw   = typeof row['%'] === 'number' ? row['%'] : 0;
     const barW     = Math.min(100, (pctRaw / maxPct) * 100).toFixed(1);
-
-    const key     = tokenAcc || owner;
-    const prev    = prevMap[key];
-    const changed = prev && prev.qty !== row['Quantity'];
+    const key      = tokenAcc || owner;
+    const changed  = prevMap[key] && prevMap[key].qty !== row['Quantity'];
 
     const tr = document.createElement('tr');
     if (changed) tr.classList.add('row-flash');
 
-    /* Rank */
-    const tdRank = document.createElement('td');
-    tdRank.className = 'td-rank';
-    tdRank.textContent = rank;
-    tr.appendChild(tdRank);
+    /* # */
+    const tdR = document.createElement('td');
+    tdR.className = 'td-rank'; tdR.textContent = rank;
+    tr.appendChild(tdR);
 
-    /* Wallet — separate column (≥900px) */
-    const tdWallet = document.createElement('td');
-    tdWallet.className = 'td-addr col-token-sep';
-    const walletBtn = makeCopyBtn(owner, 7, 7);
-    if (changed) walletBtn.classList.add('cell-glitch');
-    tdWallet.appendChild(walletBtn);
-    tr.appendChild(tdWallet);
+    /* Wallet */
+    const tdW = document.createElement('td');
+    tdW.className = 'td-addr';
+    const wb = makeCopyBtn(owner, headChars, tailChars, 'table-copy-btn');
+    if (changed) wb.classList.add('cell-glitch');
+    tdW.appendChild(wb);
+    tr.appendChild(tdW);
 
-    /* Token acc — separate column (≥900px) */
-    const tdToken = document.createElement('td');
-    tdToken.className = 'td-addr col-token-sep';
-    const tokenBtn = makeCopyBtn(tokenAcc, 7, 7);
-    tdToken.appendChild(tokenBtn);
-    tr.appendChild(tdToken);
+    /* Token Acc */
+    const tdT = document.createElement('td');
+    tdT.className = 'td-addr';
+    const tb = makeCopyBtn(tokenAcc, headChars, tailChars, 'table-copy-btn');
+    tdT.appendChild(tb);
+    tr.appendChild(tdT);
 
-    /* Combined wallet + token — one column (< 900px) */
-    const tdCombined = document.createElement('td');
-    tdCombined.className = 'td-addr-combined col-combined';
-    tdCombined.innerHTML = `
-      <div class="combined-inner">
-        <div class="combined-row">
-          <span class="addr-sub-label">Wallet</span>
-        </div>
-        <div class="combined-row">
-          <span class="addr-sub-label">Token</span>
-        </div>
-      </div>`;
-    const combRows = tdCombined.querySelectorAll('.combined-row');
-    const walletBtn2 = makeCopyBtn(owner, 6, 6);
-    if (changed) walletBtn2.classList.add('cell-glitch');
-    combRows[0].appendChild(walletBtn2);
-    const tokenBtn2 = makeCopyBtn(tokenAcc, 6, 6);
-    combRows[1].appendChild(tokenBtn2);
-    tr.appendChild(tdCombined);
-
-    /* Balance */
-    const tdQty = document.createElement('td');
-    tdQty.className = 'td-num col-balance';
-    tdQty.textContent = fmtQ(row['Quantity']);
-    if (changed) tdQty.classList.add('cell-glitch');
-    tr.appendChild(tdQty);
-
-    /* Share % */
-    const tdPct = document.createElement('td');
-    tdPct.className = 'td-pct';
-    tdPct.innerHTML = `
+    /* Share */
+    const tdP = document.createElement('td');
+    tdP.className = 'td-pct';
+    tdP.innerHTML = `
       <div class="pct-wrap">
         <span class="pct-num">${fmtP(row['%'])}%</span>
         <div class="pct-track"><div class="pct-fill" style="width:${barW}%"></div></div>
       </div>`;
-    tr.appendChild(tdPct);
+    tr.appendChild(tdP);
 
     /* Value */
-    const tdVal = document.createElement('td');
-    tdVal.className = 'td-value';
-    tdVal.textContent = '$' + fmtV(row['Value']);
-    tr.appendChild(tdVal);
+    const tdV = document.createElement('td');
+    tdV.className = 'td-value col-value';
+    tdV.textContent = '$' + fmtV(row['Value']);
+    tr.appendChild(tdV);
 
     tbody.appendChild(tr);
   });
@@ -1066,11 +803,9 @@ function renderTable(rest, prevMap, maxPct) {
   tableEl.appendChild(table);
 }
 
-/* ─── RENDER ALL ────────────────────────────────── */
+/* ─── RENDER ALL ───────────────────── */
 function renderAll(data) {
-  if (!Array.isArray(data) || data.length === 0) {
-    renderError('No holder data found.'); return;
-  }
+  if (!Array.isArray(data) || data.length === 0) { renderError('No holder data found.'); return; }
   const prevMap = buildPrevMap(prevData);
   const maxP    = getMaxPct(data);
   renderPodium(data.slice(0, 3));
@@ -1078,7 +813,7 @@ function renderAll(data) {
   prevData = data;
 }
 
-/* ─── ERROR ─────────────────────────────────────── */
+/* ─── ERROR ────────────────────────── */
 function renderError(msg) {
   if (tableEl.querySelector('#holders-table')) return;
   tableEl.innerHTML = `
@@ -1089,31 +824,31 @@ function renderError(msg) {
     </div>`;
 }
 
-/* ─── SYNC UI ───────────────────────────────────── */
+/* ─── SYNC UI ──────────────────────── */
 function setSyncing(active) {
   if (active) {
     liveLabelEl.textContent = 'Syncing…';
-    liveDotEl.style.background = 'var(--gold)';
-    liveDotEl.style.boxShadow  = '0 0 8px var(--gold)';
+    liveDotEl.style.background  = 'var(--gold)';
+    liveDotEl.style.boxShadow   = '0 0 8px var(--gold)';
   } else {
     liveLabelEl.textContent = 'Live';
-    liveDotEl.style.background = 'var(--cyan)';
-    liveDotEl.style.boxShadow  = '0 0 8px var(--cyan)';
+    liveDotEl.style.background  = 'var(--cyan)';
+    liveDotEl.style.boxShadow   = '0 0 8px var(--cyan)';
   }
 }
 
-/* ─── COUNTDOWN ─────────────────────────────────── */
+/* ─── COUNTDOWN ────────────────────── */
 function startCountdown() {
   clearInterval(countdownInt);
   countdownVal = 30;
-  countdownBar.style.width = '100%';
+  cntBar.style.width = '100%';
   countdownInt = setInterval(() => {
     countdownVal = Math.max(0, countdownVal - 1);
-    countdownBar.style.width = ((countdownVal / 30) * 100) + '%';
+    cntBar.style.width = ((countdownVal / 30) * 100) + '%';
   }, 1000);
 }
 
-/* ─── FETCH ─────────────────────────────────────── */
+/* ─── FETCH ────────────────────────── */
 async function loadData() {
   setSyncing(true);
   try {
@@ -1123,20 +858,27 @@ async function loadData() {
     if (json.error) throw new Error(json.error);
     renderAll(json);
     const now = new Date();
-    lastSyncEl.textContent = `Synced ${now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
+    lastSyncEl.textContent = `Synced ${now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
     setSyncing(false);
     startCountdown();
   } catch(err) {
     console.error(err);
     renderError(err.message);
-    liveLabelEl.textContent = 'Error';
-    liveDotEl.style.background = 'var(--magenta)';
-    liveDotEl.style.boxShadow  = '0 0 8px var(--magenta)';
+    liveLabelEl.textContent     = 'Error';
+    liveDotEl.style.background  = 'var(--magenta)';
+    liveDotEl.style.boxShadow   = '0 0 8px var(--magenta)';
   }
 }
 
 loadData();
 setInterval(loadData, 30000);
+
+/* Re-render on resize so char counts update */
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { if (prevData) renderAll(prevData); }, 200);
+});
 </script>
 </body>
 </html>
